@@ -1,0 +1,37 @@
+---
+title: "A Web Page"
+author: "Gautam Kunwar"
+date: "May 22 ,2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## May 22,2020
+```{r, echo=FALSE}
+   library(leaflet)
+   set.seed(2020-05-22)
+   webpageIcon<-makeIcon(
+       iconUrl="D:/Data Science/Products/R Markdown/flag.jpg",
+       iconWidth = 31*215/230, iconHeight = 24,
+       iconAnchorX = 31*215/230/2, iconAnchorY = 16
+   )
+   webpage_Lat_long<-data.frame(
+       lat= c(11.059821,17.123184,23.473324,29.238478,21.295132,23.745127),
+       lng=c(78.387451,79.208824,77.947998,76.431885,81.828232,91.746826)
+   )
+   webpage_Lat_long %>%
+       leaflet() %>%
+       addTiles() %>%
+       addCircleMarkers(weight = 2, radius = 31,
+                        fillColor =c("blue","green","yellow","grey","pink","red"),
+                        popup = c("Tamil Nadu","Telengana","Madhya Pradesh","Haryana","Chhattisgarh","Tripura")
+                        ) %>%
+       addLegend(labels = c("Tamil Nadu","Telengana","Madhya Pradesh","Haryana","Chhattisgarh","Tripura"),
+                 colors= c("blue","green","yellow","grey","pink","red")) %>%
+       addMarkers(icon = webpageIcon,clusterOptions = markerClusterOptions()) 
+```
